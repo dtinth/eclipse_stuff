@@ -11,5 +11,9 @@ public abstract class Expression {
 			return "" + another;
 		}
 	}
+	
+	public Expression reduce() {
+		return this;
+	}
 
 }

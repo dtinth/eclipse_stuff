@@ -1,6 +1,7 @@
 package jpc;
 
 import jpc.expr.Constant;
+import jpc.expr.Differentiation;
 import jpc.expr.Division;
 import jpc.expr.Exponential;
 import jpc.expr.Expression;
@@ -12,10 +13,11 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Expression expr = new Multiplication(new Multiplication(
+		Expression expr = new Differentiation(
+				new Multiplication(new Multiplication(
 				new Division(new Number(4), new Number(3)),
 				new Constant("PI")),
-				new Exponential(new Variable("r"), new Number(3)));
+				new Exponential(new Variable("r"), new Number(3))), new Variable("x"));
 		
 		System.out.println(expr);
 		
