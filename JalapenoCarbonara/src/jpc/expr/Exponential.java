@@ -7,6 +7,11 @@ public class Exponential extends BinaryOperation {
 	}
 
 	@Override
+	public Expression reduce() {
+		return new Exponential(a.reduce(), b.reduce());
+	}
+
+	@Override
 	public int getPrecedence() {
 		return -10;
 	}

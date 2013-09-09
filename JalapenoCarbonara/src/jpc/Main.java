@@ -20,6 +20,7 @@ public class Main {
 				new Exponential(new Variable("r"), new Number(3))), new Variable("x"));
 		
 		System.out.println(expr);
+		System.out.println(expr.reduce());
 		
 	}
 

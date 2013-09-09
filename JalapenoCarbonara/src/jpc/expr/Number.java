@@ -1,6 +1,9 @@
 package jpc.expr;
 
 public class Number extends Constant {
+	
+	public static final Number ZERO = new Number(0);
+	public static final Number ONE = new Number(1);
 
 	private double value;
 
