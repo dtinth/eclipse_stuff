@@ -17,7 +17,7 @@ public class Main {
 				new Multiplication(new Multiplication(
 				new Division(new Number(4), new Number(3)),
 				new Constant("PI")),
-				new Exponential(new Variable("r"), new Number(3))), new Variable("x"));
+				new Exponential(new Variable("r"), new Number(3))), new Variable("r"));
 		
 		System.out.println(expr);
 		System.out.println(expr.reduce());

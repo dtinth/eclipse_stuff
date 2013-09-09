@@ -24,16 +24,16 @@ public class Differentiation extends Expression {
 	public Expression reduce() {
 		if (expression instanceof Multiplication) {
 			Multiplication multiplication = (Multiplication) expression;
-			Expression u = multiplication.a;
-			Expression v = multiplication.b;
+			Expression u = multiplication.a.reduce();
+			Expression v = multiplication.b.reduce();
 			return new Addition(
 						new Multiplication(v, d(u)),
 						new Multiplication(u, d(v))
 					).reduce();
 		} else if (expression instanceof Division) {
 			Division division = (Division) expression;
-			Expression u = division.a;
-			Expression v = division.b;
+			Expression u = division.a.reduce();
+			Expression v = division.b.reduce();
 			return new Division(
 						new Subtraction(
 								new Multiplication(v, d(u)),
@@ -41,6 +41,14 @@ public class Differentiation extends Expression {
 								),
 						new Exponential(v, new Number(2))
 					).reduce();
+		} else if (expression instanceof Exponential) {
+			Exponential exponentiation = (Exponential) expression;
+			Expression u = exponentiation.a.reduce();
+			Expression v = exponentiation.b.reduce();
+			if (u.equals(variable) && v instanceof Number) {
+				return new Multiplication(v,
+						new Exponential(u, new Subtraction(v, new Number(1))));
+			}
 		} else if (expression instanceof Constant) {
 			return new Number(0);
 		}
