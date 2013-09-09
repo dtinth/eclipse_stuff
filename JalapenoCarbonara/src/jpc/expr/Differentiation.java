@@ -39,15 +39,15 @@ public class Differentiation extends Expression {
 								new Multiplication(v, d(u)),
 								new Multiplication(u, d(v))
 								),
-						new Exponential(v, new Number(2))
+						new Exponentiation(v, new Number(2))
 					).reduce();
-		} else if (expression instanceof Exponential) {
-			Exponential exponentiation = (Exponential) expression;
+		} else if (expression instanceof Exponentiation) {
+			Exponentiation exponentiation = (Exponentiation) expression;
 			Expression u = exponentiation.a.reduce();
 			Expression v = exponentiation.b.reduce();
 			if (u.equals(variable) && v instanceof Number) {
 				return new Multiplication(v,
-						new Exponential(u, new Subtraction(v, new Number(1))));
+						new Exponentiation(u, new Subtraction(v, new Number(1))));
 			}
 		} else if (expression instanceof Constant) {
 			return new Number(0);
